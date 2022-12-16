@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+#Ignore virtual env
+.venv/
+
+#Ignore installed package
+dist/
+
+*.pyc
+.coverage
+coverage.xml
