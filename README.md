@@ -32,12 +32,8 @@ This package consists second project.
 
 # Commands and demonstrations
 
-### Demonstration of works:
+### Demonstration of works with flat JSON files:
 
-    command
-here will be screen-record
-
-### Demonstration of works 2:
-
-    command
-here will be screen-record
+    gendiff file-1-path file-2-path
+    gendiff --h
+[![asciicast](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR.svg)](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR)

@@ -14,6 +14,6 @@ gendiff:
 	poetry run gendiff
 
 make lint:
-	poetry run flake8 brain_games
+	poetry run flake8 gendiff
 
 .PHONY: install, gendiff
