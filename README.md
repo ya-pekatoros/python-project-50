@@ -1,8 +1,8 @@
-### Hexlet tests and linter status:
+# Tests and linter status:
 [![Actions Status](https://github.com/ya-pekatoros/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/ya-pekatoros/python-project-50/actions)
-
-
+[![Actions Status](https://github.com/ya-pekatoros/python-project-50/workflows/pyci/badge.svg)](https://github.com/ya-pekatoros/python-project-50/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/24e1c9e1a3d7156eb81c/maintainability)](https://codeclimate.com/github/ya-pekatoros/python-project-50/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/24e1c9e1a3d7156eb81c/test_coverage)](https://codeclimate.com/github/ya-pekatoros/python-project-50/test_coverage)
 
 # Description
 

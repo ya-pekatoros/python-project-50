@@ -13,7 +13,13 @@ package-install:
 gendiff:
 	poetry run gendiff
 
-make lint:
+lint:
 	poetry run flake8 gendiff
+
+test:
+	poetry run pytest
+
+tests-cov:
+	poetry run pytest --cov
 
 .PHONY: install, gendiff
