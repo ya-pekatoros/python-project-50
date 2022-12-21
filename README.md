@@ -37,3 +37,15 @@ This package consists second project.
     gendiff file-1-path file-2-path
     gendiff --h
 [![asciicast](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR.svg)](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR)
+
+### Demonstration of works with flat YAML files:
+
+[![asciicast](https://asciinema.org/a/MRS0b80RK5t1NL0k5DQtPNAgJ.svg)](https://asciinema.org/a/MRS0b80RK5t1NL0k5DQtPNAgJ)
+
+### Demonstration of works with nested JSON files:
+
+[![asciicast](https://asciinema.org/a/XgyKOJQAjMYkA6brZF4q2e7eM.svg)](https://asciinema.org/a/XgyKOJQAjMYkA6brZF4q2e7eM)
+
+### Demonstration of works with nested YAML files:
+
+[![asciicast](https://asciinema.org/a/7P9asGZj8flZVKLfib7Xx5cgw.svg)](https://asciinema.org/a/7P9asGZj8flZVKLfib7Xx5cgw)
