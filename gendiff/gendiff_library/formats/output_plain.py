@@ -27,10 +27,10 @@ def plain(current_data, property_path=''):  # noqa: C901
             lines.append(f"Property '{property_path}{key[8:]}' was removed")
 
         elif 'added' in key:
-             lines.append(f"Property '{property_path}{key[6:]}' was added with value: {current_value1}")
+            lines.append(f"Property '{property_path}{key[6:]}' was added with value: {current_value1}")
 
         elif current_value1 == '[complex value]':
             new_property_path = property_path + key + '.'
             lines.append(f'{plain(value, new_property_path)}')
-            
+
     return '\n'.join(lines)
