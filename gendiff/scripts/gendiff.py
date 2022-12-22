@@ -6,8 +6,8 @@ from gendiff.gendiff_library.make_output import generate_diff
 
 def main():
     parser = argparse.ArgumentParser(description="Compares two configuration files and shows a difference.")
-    parser.add_argument("-f", "--format", help="set format of output, available formatters: stylish, plain", default='stylish')  # noqa: E501
-    available_formats = ['stylish', 'plain']
+    parser.add_argument("-f", "--format", help='set format of output, available parameters: [stylish|plain|json]', default='stylish')  # noqa: E501
+    available_formats = ['stylish', 'plain', 'json']
     parser.add_argument(
         "first_file",
         type=lambda p: Path(p).absolute()
@@ -22,7 +22,11 @@ def main():
         return print('Choose the corrent formatter')
 
     diff = generate_diff(args.first_file, args.second_file, args.format)
-    print(diff)
+
+    if args.format == 'json':
+        print(f"The result of gendiff in located here: {Path('.').absolute()}/gendiff_output.json")
+    else:
+        print(diff)
 
 
 if __name__ == '__main__':

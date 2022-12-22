@@ -35,15 +35,17 @@ This package consists second project.
 gendiff file-1-path file-2-path
     gendiff --h
 
+[![asciicast](https://asciinema.org/a/nwp85W7BFsW8ybmsRJZCXibrt.svg)](https://asciinema.org/a/nwp85W7BFsW8ybmsRJZCXibrt)
+
 It works with two file formats: JASIN (file.json) and YAML( file.yml or file.yaml)
 
-There are two formats of output: stylish and plain. Below you can find some demonstations of how it looks like. You can chose the format using '-f' or '--format' and writing 'stylish' of 'plain' after it. The default format is 'stylish' (if you don't write any of format)
+There are two formats of output: stylish, plain and json (generate JSON file with results). Below you can find some demonstations of how it looks like. You can chose the format using '-f' or '--format' and writing 'stylish' of 'plain' after it. The default format is 'stylish' (if you don't write any of format)
 
 ### Stylish format
 
 ###### Demonstration of works with flat JSON files:
 
-[![asciicast](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR.svg)](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR)
+[![asciicast](https://asciinema.org/a/mIKPz61JM2dsScTsPyr8GEK7p.svg)](https://asciinema.org/a/mIKPz61JM2dsScTsPyr8GEK7p)
 
 ###### Demonstration of works with flat YAML files:
 
@@ -62,3 +64,9 @@ There are two formats of output: stylish and plain. Below you can find some demo
 ###### Demonstration of works with nested JSON files:
 
 [![asciicast](https://asciinema.org/a/kTjeMUJ2vP4PuO42I7EFoIII4.svg)](https://asciinema.org/a/kTjeMUJ2vP4PuO42I7EFoIII4)
+
+### JSON format
+
+###### Demonstration of works with nested JSON files:
+
+[![asciicast](https://asciinema.org/a/4ysoHgXxFUzgIW8bC6imGLr2o.svg)](https://asciinema.org/a/4ysoHgXxFUzgIW8bC6imGLr2o)

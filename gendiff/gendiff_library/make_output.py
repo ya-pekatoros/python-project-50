@@ -1,6 +1,6 @@
 from gendiff.gendiff_library.find_difference import find_data_differences
 from gendiff.gendiff_library.files_parser import get_data
-from gendiff.gendiff_library.formats import stylish, plain
+from gendiff.gendiff_library.formats import stylish, plain, json_file_output
 
 
 def generate_diff(file_path1, file_path2, format_name):
@@ -14,5 +14,7 @@ def generate_diff(file_path1, file_path2, format_name):
         format_name = stylish
     elif format_name == 'plain':
         format_name = plain
+    elif format_name == 'json':
+        format_name = json_file_output
 
     return format_name(differences)

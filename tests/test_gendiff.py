@@ -2,6 +2,7 @@ from pathlib import Path
 from gendiff.gendiff_library.make_output import generate_diff
 from gendiff.gendiff_library.files_parser import get_data
 from gendiff.gendiff_library.find_difference import find_data_differences
+from gendiff.gendiff_library.formats import json_file_output
 
 def get_fixture_path(file_name):
     current_dir = Path('.').absolute()
@@ -162,12 +163,12 @@ def test_gendiff_nested_yaml():
     assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == expected_data_console[2]
 
 
-data1 = get_data(get_fixture_path('file1.yml'))
-data2 = get_data(get_fixture_path('file2.yml'))
-    
-print(find_data_differences(data1, data2))
-
-data1 = get_data(get_fixture_path('nested_file1.json'))
-data2 = get_data(get_fixture_path('nested_file2.json'))
-    
-print(find_data_differences(data1, data2))
+def test_ouput_json():
+    data1 = get_data(get_fixture_path('nested_file1.json'))
+    data2 = get_data(get_fixture_path('nested_file2.json'))
+    differences = find_data_differences(data1, data2)
+    output_path = get_fixture_path('gendiff_output.json')
+    json_file_output(differences, filepath=output_path)
+    data_from_output_file = get_data(output_path)
+    assert data_from_output_file == differences
+    Path.unlink(output_path)
