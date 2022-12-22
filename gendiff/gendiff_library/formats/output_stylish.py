@@ -15,7 +15,6 @@ def stylish(current_data, depth=0):  # noqa: C901
 
     deep_indent_size = depth + spaces_count
     current_indent = replacer * depth
-    lines = []
     for key, value in current_data.items():
         if 'deleted' in key:
             deep_indent = replacer * (deep_indent_size - 2)

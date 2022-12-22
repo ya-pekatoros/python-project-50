@@ -32,20 +32,33 @@ This package consists second project.
 
 # Commands and demonstrations
 
-### Demonstration of works with flat JSON files:
-
-    gendiff file-1-path file-2-path
+gendiff file-1-path file-2-path
     gendiff --h
+
+It works with two file formats: JASIN (file.json) and YAML( file.yml or file.yaml)
+
+There are two formats of output: stylish and plain. Below you can find some demonstations of how it looks like. You can chose the format using '-f' or '--format' and writing 'stylish' of 'plain' after it. The default format is 'stylish' (if you don't write any of format)
+
+### Stylish format
+
+###### Demonstration of works with flat JSON files:
+
 [![asciicast](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR.svg)](https://asciinema.org/a/rfxqj9S1eyyWUbVbZREy7QXNR)
 
-### Demonstration of works with flat YAML files:
+###### Demonstration of works with flat YAML files:
 
 [![asciicast](https://asciinema.org/a/MRS0b80RK5t1NL0k5DQtPNAgJ.svg)](https://asciinema.org/a/MRS0b80RK5t1NL0k5DQtPNAgJ)
 
-### Demonstration of works with nested JSON files:
+###### Demonstration of works with nested JSON files:
 
 [![asciicast](https://asciinema.org/a/XgyKOJQAjMYkA6brZF4q2e7eM.svg)](https://asciinema.org/a/XgyKOJQAjMYkA6brZF4q2e7eM)
 
-### Demonstration of works with nested YAML files:
+###### Demonstration of works with nested YAML files:
 
 [![asciicast](https://asciinema.org/a/7P9asGZj8flZVKLfib7Xx5cgw.svg)](https://asciinema.org/a/7P9asGZj8flZVKLfib7Xx5cgw)
+
+### Plain format
+
+###### Demonstration of works with nested JSON files:
+
+[![asciicast](https://asciinema.org/a/kTjeMUJ2vP4PuO42I7EFoIII4.svg)](https://asciinema.org/a/kTjeMUJ2vP4PuO42I7EFoIII4)

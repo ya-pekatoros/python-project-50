@@ -101,7 +101,7 @@ find_differences_result_nested = {
 }
 
 
-expected_data_stylish = read(get_fixture_path('expectations_stylish.txt')).rstrip().split('\n\n\n\n')
+expected_data_console = read(get_fixture_path('expectations_console.txt')).rstrip().split('\n\n\n\n')
 
 
 def test_get_data_json_flat():
@@ -145,19 +145,21 @@ def test_find_data_differences_nested():
 
 
 def test_gendiff_flat_json():
-    assert generate_diff(get_fixture_path('file1.json'), get_fixture_path('file2.json'), 'stylish') == expected_data_stylish[0]
+    assert generate_diff(get_fixture_path('file1.json'), get_fixture_path('file2.json'), 'stylish') == expected_data_console[0]
 
 
 def test_gendiff_flat_yaml():
-    assert generate_diff(get_fixture_path('file1.yml'), get_fixture_path('file2.yml'), 'stylish') == expected_data_stylish[0]
+    assert generate_diff(get_fixture_path('file1.yml'), get_fixture_path('file2.yml'), 'stylish') == expected_data_console[0]
 
 
 def test_gendiff_nested_json():
-    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'stylish') == expected_data_stylish[1]
+    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'stylish') == expected_data_console[1]
+    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'plain') == expected_data_console[2]
 
 
 def test_gendiff_nested_yaml():
-    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'stylish') == expected_data_stylish[1]
+    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'stylish') == expected_data_console[1]
+    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == expected_data_console[2]
 
 
 data1 = get_data(get_fixture_path('file1.yml'))
