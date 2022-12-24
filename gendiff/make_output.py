@@ -3,7 +3,7 @@ from gendiff.files_parser import get_data
 from gendiff.gendiff_library.formats import stylish, plain, json_file_output
 
 
-def generate_diff(file_path1, file_path2, format_name):
+def generate_diff(file_path1, file_path2, format_name='stylish'):
 
     data1 = get_data(file_path1)
     data2 = get_data(file_path2)
