@@ -157,22 +157,18 @@ def test_gendiff_flat_yaml():
 def test_gendiff_nested_json():
     assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'stylish') == CONS_OUT_EXPECT[1]
     assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'plain') == CONS_OUT_EXPECT[2]
-
+    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'json') == CONS_OUT_EXPECT[3]
 
 def test_gendiff_nested_yaml():
     assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'stylish') == CONS_OUT_EXPECT[1]
     assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == CONS_OUT_EXPECT[2]
+    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'json') == CONS_OUT_EXPECT[3]
 
 
-def test_main_ouput_json():
-    data1 = get_data(get_fixture_path('nested_file1.json'))
-    data2 = get_data(get_fixture_path('nested_file2.json'))
-    differences = find_data_differences(data1, data2)
-    output_path = os.getcwd()+'/gendiff_output.json'
-    form_output(request=['-fjson', get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json')])
-    data_from_output_file = get_data(output_path)
-    assert data_from_output_file == differences
-    os.remove(output_path)
+def test_main_ouput():
+    expectations = generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'json')
+    test = form_output(request=['-fjson', get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json')])
+    assert test == expectations
 
 
 def test_parser():

@@ -37,19 +37,9 @@ def parse_args(request):
 def form_output(request=''):
     if request == '':
         request = sys.argv[1:]
-
     parser = parse_args(request)
-
     diff = generate_diff(parser.first_file, parser.second_file, parser.format)
-
-    if parser.format == 'json':
-        current_dir = os.getcwd()
-        filename = "gendiff_output.json"
-        with open(f'{current_dir}/{filename}', "w") as output_file:
-            output_file.write(diff)
-        print(f"The result of gendiff in located here: {current_dir + filename}")
-    else:
-        print(diff)
+    print(diff)
     return diff
 
 

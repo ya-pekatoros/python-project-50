@@ -67,3 +67,50 @@ Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]
+
+
+
+{
+  "common": {
+    "added follow": false,
+    "setting1": "Value 1",
+    "deleted setting2": 200,
+    "deleted setting3": true,
+    "added setting3": null,
+    "added setting4": "blah blah",
+    "added setting5": {
+      "key5": "value5"
+    },
+    "setting6": {
+      "doge": {
+        "deleted wow": "",
+        "added wow": "so much"
+      },
+      "key": "value",
+      "added ops": "vops"
+    }
+  },
+  "group1": {
+    "deleted baz": "bas",
+    "added baz": "bars",
+    "foo": "bar",
+    "deleted nest": {
+      "key": "value"
+    },
+    "added nest": "str"
+  },
+  "deleted group2": {
+    "abc": 12345,
+    "deep": {
+      "id": 45
+    }
+  },
+  "added group3": {
+    "deep": {
+      "id": {
+        "number": 45
+      }
+    },
+    "fee": 100500
+  }
+}
