@@ -174,9 +174,9 @@ def test_gendiff_nested_yaml():
 
 
 def test_parser():
-    path1 = 'tests/fixtures/file1.yml'
-    path2 = 'tests/fixtures/file2.yml'
+    path1 = os.getcwd() + '/' + 'tests/fixtures/file1.yml'
+    path2 = os.getcwd() + '/' + 'tests/fixtures/file2.yml'
     parser = parse_args(request=['-fplain', path1, path2])
-    assert parser.first_file == os.getcwd() + '/' + path1
-    assert parser.second_file == os.getcwd() + '/' + path2
+    assert parser.first_file == path1
+    assert parser.second_file == path2
     assert parser.format == 'plain'

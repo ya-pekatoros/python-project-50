@@ -1,5 +1,4 @@
 import argparse
-import os
 import sys
 from gendiff import generate_diff
 
@@ -18,9 +17,6 @@ def parse_args(request):
         type=str
     )
     args = parser.parse_args(request)
-    current_dir = os.getcwd()
-    args.first_file = current_dir + '/' + args.first_file
-    args.second_file = current_dir + '/' + args.second_file
     return args
 
 
