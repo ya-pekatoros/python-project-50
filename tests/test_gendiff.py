@@ -1,26 +1,27 @@
-from pathlib import Path
-from gendiff.gendiff_library.make_output import generate_diff
-from gendiff.gendiff_library.files_parser import get_data
-from gendiff.gendiff_library.find_difference import find_data_differences
+import os
+from gendiff.make_output import generate_diff
+from gendiff.files_parser import get_data
+from gendiff.find_difference import find_data_differences
 from gendiff.gendiff_library.formats import json_file_output
+from gendiff.scripts.gendiff import parse_args
 
 def get_fixture_path(file_name):
-    current_dir = Path('.').absolute()
+    current_dir = os.getcwd()
     print(current_dir)
-    return current_dir / 'tests/fixtures' / file_name
+    return current_dir + '/tests/fixtures/' + file_name
 
 def read(file_path):
     with open(file_path, 'r') as f:
         result = f.read()
     return result
 
-parsing_file1_flat_results = {
+PARS_FLAT_EXPECT = {
     "host": "hexlet.io", "timeout": 50,
     "proxy": "123.234.53.22",
     "follow": False,
 }
 
-parsing_file1_nested_results = {
+PARS_NSTED_EXPECT = {
     'common': {
         'setting1': 'Value 1',
         'setting2': 200,
@@ -31,7 +32,7 @@ parsing_file1_nested_results = {
                 'wow': ''
             }
         }
-    }, 
+    },
     'group1': {
         'baz': 'bas',
         'foo': 'bar',
@@ -47,7 +48,7 @@ parsing_file1_nested_results = {
     }
 }
 
-find_differences_result_flat = {
+DIFF_FLAT_EXPECT = {
     'deleted follow': False,
     'host': 'hexlet.io',
     'deleted proxy': '123.234.53.22',
@@ -56,7 +57,7 @@ find_differences_result_flat = {
     'added verbose': True
 }
 
-find_differences_result_nested = {
+DIFF_NESTED_EXPECT = {
     'common': {
         'added follow': False,
         'setting1': 'Value 1',
@@ -102,65 +103,65 @@ find_differences_result_nested = {
 }
 
 
-expected_data_console = read(get_fixture_path('expectations_console.txt')).rstrip().split('\n\n\n\n')
+CONS_OUT_EXPECT = read(get_fixture_path('expectations_console.txt')).rstrip().split('\n\n\n\n')
 
 
 def test_get_data_json_flat():
-    assert get_data(get_fixture_path('file1.json')) == parsing_file1_flat_results
+    assert get_data(get_fixture_path('file1.json')) == PARS_FLAT_EXPECT
 
 
 def test_get_data_yaml_flat():
-    assert get_data(get_fixture_path('file1.yml')) == parsing_file1_flat_results
+    assert get_data(get_fixture_path('file1.yml')) == PARS_FLAT_EXPECT
 
 
 def test_get_data_json_nested():
-    assert get_data(get_fixture_path('nested_file1.json')) == parsing_file1_nested_results
+    assert get_data(get_fixture_path('nested_file1.json')) == PARS_NSTED_EXPECT
 
 
 def test_get_data_yaml_nested():
-    assert get_data(get_fixture_path('nested_file1.yaml')) == parsing_file1_nested_results
+    assert get_data(get_fixture_path('nested_file1.yaml')) == PARS_NSTED_EXPECT
 
 
 def test_find_data_differences_flat():
     data1 = get_data(get_fixture_path('file1.json'))
     data2 = get_data(get_fixture_path('file2.json'))
     
-    assert find_data_differences(data1, data2) == find_differences_result_flat
+    assert find_data_differences(data1, data2) == DIFF_FLAT_EXPECT
 
     data1 = get_data(get_fixture_path('file1.yml'))
     data2 = get_data(get_fixture_path('file2.yml'))
     
-    assert find_data_differences(data1, data2) == find_differences_result_flat
+    assert find_data_differences(data1, data2) == DIFF_FLAT_EXPECT
 
 
 def test_find_data_differences_nested():
     data1 = get_data(get_fixture_path('nested_file1.json'))
     data2 = get_data(get_fixture_path('nested_file2.json'))
     
-    assert find_data_differences(data1, data2) == find_differences_result_nested
+    assert find_data_differences(data1, data2) == DIFF_NESTED_EXPECT
 
     data1 = get_data(get_fixture_path('nested_file1.yaml'))
     data2 = get_data(get_fixture_path('nested_file2.yaml'))
     
-    assert find_data_differences(data1, data2) == find_differences_result_nested
+    assert find_data_differences(data1, data2) == DIFF_NESTED_EXPECT
 
 
 def test_gendiff_flat_json():
-    assert generate_diff(get_fixture_path('file1.json'), get_fixture_path('file2.json'), 'stylish') == expected_data_console[0]
+    assert generate_diff(get_fixture_path('file1.json'), get_fixture_path('file2.json'), 'stylish') == CONS_OUT_EXPECT[0]
 
 
 def test_gendiff_flat_yaml():
-    assert generate_diff(get_fixture_path('file1.yml'), get_fixture_path('file2.yml'), 'stylish') == expected_data_console[0]
+    assert generate_diff(get_fixture_path('file1.yml'), get_fixture_path('file2.yml'), 'stylish') == CONS_OUT_EXPECT[0]
 
 
 def test_gendiff_nested_json():
-    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'stylish') == expected_data_console[1]
-    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'plain') == expected_data_console[2]
+    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'stylish') == CONS_OUT_EXPECT[1]
+    assert generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'plain') == CONS_OUT_EXPECT[2]
 
 
 def test_gendiff_nested_yaml():
-    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'stylish') == expected_data_console[1]
-    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == expected_data_console[2]
+    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'stylish') == CONS_OUT_EXPECT[1]
+    assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == CONS_OUT_EXPECT[2]
 
 
 def test_ouput_json():
@@ -171,4 +172,11 @@ def test_ouput_json():
     json_file_output(differences, filepath=output_path)
     data_from_output_file = get_data(output_path)
     assert data_from_output_file == differences
-    Path.unlink(output_path)
+    os.remove(output_path)
+
+def test_parser():
+    parser = parse_args(request=['-fplain', get_fixture_path('file1.yml'), get_fixture_path('file2.yml')])
+    assert parser.first_file == get_fixture_path('file1.yml')
+    assert parser.second_file == get_fixture_path('file2.yml')
+    assert parser.format == 'plain'
+    assert parse_args(request=['-ftest', get_fixture_path('file1.yml'), get_fixture_path('file2.yml')]) == 'Choose the corrent formatter'

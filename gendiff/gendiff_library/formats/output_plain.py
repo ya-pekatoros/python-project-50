@@ -13,13 +13,13 @@ def get_value_spelling(value):
 
 def plain(current_data, property_path=''):  # noqa: C901
     lines = []
-    data_items = iter(current_data.items())
+    keys_iter = iter(current_data.items())
 
-    for key, value in data_items:
+    for key, value in keys_iter:
         current_value1 = get_value_spelling(value)
 
         if 'deleted' in key and f'added {key[8:]}' in current_data.keys():
-            key, value = next(data_items)
+            key, value = next(keys_iter)
             current_value2 = get_value_spelling(value)
             lines.append(f"Property '{property_path}{key[6:]}' was updated. From {current_value1} to {current_value2}")
 

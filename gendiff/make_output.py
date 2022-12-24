@@ -1,5 +1,5 @@
-from gendiff.gendiff_library.find_difference import find_data_differences
-from gendiff.gendiff_library.files_parser import get_data
+from gendiff.find_difference import find_data_differences
+from gendiff.files_parser import get_data
 from gendiff.gendiff_library.formats import stylish, plain, json_file_output
 
 

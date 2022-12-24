@@ -3,7 +3,7 @@ def find_data_differences(data1, data2, differences=None):  # noqa: C901
     if differences is None:
         differences = {}
 
-    all_keys = sorted(set(data1.keys()).union(set(data2.keys())), key=lambda x: x.lower())
+    all_keys = sorted(set(data1.keys()) | (set(data2.keys())))
 
     for key in all_keys:
         if key not in data2:
