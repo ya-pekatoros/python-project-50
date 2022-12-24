@@ -50,6 +50,7 @@ def form_output(request=''):
         print(f"The result of gendiff in located here: {current_dir + filename}")
     else:
         print(diff)
+    return diff
 
 
 def main():
