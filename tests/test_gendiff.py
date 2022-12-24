@@ -1,5 +1,5 @@
 import os
-from gendiff.make_output import generate_diff
+from gendiff import generate_diff
 from gendiff.files_parser import get_data
 from gendiff.find_difference import find_data_differences
 from gendiff.gendiff_library.formats import json_file_output
