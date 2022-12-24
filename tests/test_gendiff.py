@@ -3,7 +3,6 @@ from gendiff import generate_diff
 from gendiff import get_data
 from gendiff import find_data_differences
 from gendiff.scripts.cli import parse_args
-from gendiff.scripts.cli import form_output
 
 
 def get_fixture_path(file_name):
@@ -174,17 +173,10 @@ def test_gendiff_nested_yaml():
     assert generate_diff(path1, path2, 'json') == CONS_OUT_EXPECT[3]
 
 
-def test_main_ouput():
-    expectations = generate_diff(get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json'), 'json')
-    test = form_output(request=['-fjson', get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json')])
-    assert test == expectations
-
-
 def test_parser():
-    path1 = get_fixture_path('file1.yml')
-    path2 = get_fixture_path('file2.yml')
+    path1 = 'tests/fixtures/file1.yml'
+    path2 = 'tests/fixtures/file2.yml'
     parser = parse_args(request=['-fplain', path1, path2])
-    assert parser.first_file == path1
-    assert parser.second_file == path2
+    assert parser.first_file == os.getcwd() + '/' + path1
+    assert parser.second_file == os.getcwd() + '/' + path2
     assert parser.format == 'plain'
-    assert parse_args(request=['-ftest', path1, path2]) == 'Choose the corrent formatter'

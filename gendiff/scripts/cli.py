@@ -19,24 +19,13 @@ def parse_args(request):
     )
     args = parser.parse_args(request)
     current_dir = os.getcwd()
-    available_formats = ['stylish', 'plain', 'json']
-    if not args.first_file.startswith('/'):
-        args.first_file = current_dir + '/' + args.first_file
-    if not args.second_file.startswith('/'):
-        args.second_file = current_dir + '/' + args.second_file
-
-    if args.format not in available_formats:
-        allert = 'Choose the corrent formatter'
-        print(allert)
-        return allert
-
+    args.first_file = current_dir + '/' + args.first_file
+    args.second_file = current_dir + '/' + args.second_file
     return args
 
 
-def form_output(request=''):
-    if request == '':
-        request = sys.argv[1:]
-    parser = parse_args(request)
+def form_output():
+    parser = parse_args(sys.argv[1:])
     diff = generate_diff(parser.first_file, parser.second_file, parser.format)
     print(diff)
     return diff
