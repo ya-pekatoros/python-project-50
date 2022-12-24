@@ -1,14 +1,14 @@
 import os
 from gendiff import generate_diff
-from gendiff.files_parser import get_data
-from gendiff.find_difference import find_data_differences
-from gendiff.gendiff_library.formats import json_file_output
-from gendiff.scripts.gendiff import parse_args
+from gendiff import get_data
+from gendiff import find_data_differences
+from gendiff.scripts.start_cli import parse_args
+from gendiff.scripts.start_cli import form_output
 
 def get_fixture_path(file_name):
     current_dir = os.getcwd()
-    print(current_dir)
     return current_dir + '/tests/fixtures/' + file_name
+
 
 def read(file_path):
     with open(file_path, 'r') as f:
@@ -164,15 +164,16 @@ def test_gendiff_nested_yaml():
     assert generate_diff(get_fixture_path('nested_file1.yaml'), get_fixture_path('nested_file2.yaml'), 'plain') == CONS_OUT_EXPECT[2]
 
 
-def test_ouput_json():
+def test_main_ouput_json():
     data1 = get_data(get_fixture_path('nested_file1.json'))
     data2 = get_data(get_fixture_path('nested_file2.json'))
     differences = find_data_differences(data1, data2)
-    output_path = get_fixture_path('gendiff_output.json')
-    json_file_output(differences, filepath=output_path)
+    output_path = os.getcwd()+'/gendiff_output.json'
+    form_output(request=['-fjson', get_fixture_path('nested_file1.json'), get_fixture_path('nested_file2.json')])
     data_from_output_file = get_data(output_path)
     assert data_from_output_file == differences
     os.remove(output_path)
+
 
 def test_parser():
     parser = parse_args(request=['-fplain', get_fixture_path('file1.yml'), get_fixture_path('file2.yml')])
