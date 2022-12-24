@@ -52,5 +52,9 @@ def form_output(request=''):
         print(diff)
 
 
-# if __name__ == '__main__':
-    # form_output()
+def main():
+    form_output()
+
+
+if __name__ == '__main__':
+    main()
