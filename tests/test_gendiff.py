@@ -2,8 +2,8 @@ import os
 from gendiff import generate_diff
 from gendiff import get_data
 from gendiff import find_data_differences
-from gendiff.scripts.gendiff import parse_args
-from gendiff.scripts.gendiff import form_output
+from gendiff.scripts.cli import parse_args
+from gendiff.scripts.cli import form_output
 
 
 def get_fixture_path(file_name):
